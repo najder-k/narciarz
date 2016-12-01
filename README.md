@@ -1,1 +1,1 @@
-# narciarz
+# narciarzu appku
