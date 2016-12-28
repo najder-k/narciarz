@@ -7,4 +7,5 @@ object Settings {
 
   lazy val host = config.getString("skier.host")
   lazy val port = config.getInt("skier.port")
+  lazy val password = config.getString("skier.password")
 }
