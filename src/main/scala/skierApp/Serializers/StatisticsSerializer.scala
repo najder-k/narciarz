@@ -9,7 +9,7 @@ object StatisticsSerializer extends CustomSerializer[NarciarzStatistics](implici
   case m: JValue =>
 
     val timeStamp = (m \ "timeStamp").extract[String]
-    val skiingType = (m \ "skiingType").extract[Int]
+    val skiingType = (m \ "skiingType").extract[String]
     val speed = (m \ "speed").extract[SpeedParameters]
     val altitude = (m \ "altitude").extract[AltitudeParameters]
     val slope = (m \ "slope").extract[SlopeParameters]
@@ -22,7 +22,7 @@ object StatisticsSerializer extends CustomSerializer[NarciarzStatistics](implici
   case NarciarzStatistics(timeStamp, skiingType, speed, altitude, slope, totalDistance, caloriesRate, runsNumber, data) =>
     JObject(
       "timeStamp" -> JString(timeStamp),
-      "skiingType" -> JInt(skiingType),
+      "skiingType" -> JString(skiingType),
       "speed" -> Extraction.decompose(speed),
       "altitude" -> Extraction.decompose(altitude),
       "slope" -> Extraction.decompose(slope),
