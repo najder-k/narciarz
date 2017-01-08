@@ -3,12 +3,12 @@ package skierApp
 import java.io.InputStream
 import java.security.{KeyStore, SecureRandom}
 import javax.net.ssl.{KeyManagerFactory, SSLContext, TrustManagerFactory}
-
+import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.{ConnectionContext, Http, HttpsConnectionContext}
 import com.typesafe.scalalogging.StrictLogging
 import com.typesafe.sslconfig.akka.AkkaSSLConfig
 import skierApp.actors.ActorImplicits._
-import skierApp.rest.ExampleController
+import skierApp.rest.{Controller, ExampleController, StatisticsController}
 import skierApp.utils.Settings
 
 import scala.util.{Failure, Success}
@@ -36,7 +36,16 @@ object Main extends App with StrictLogging {
   val https: HttpsConnectionContext = ConnectionContext.https(sslContext)
 
 
-  Http().bindAndHandle(handler = ExampleController.endpoints, interface = Settings.host, port = Settings.port, connectionContext = https)
+  val controllers: List[Controller] = List (
+    new ExampleController,
+    new StatisticsController
+  )
+
+  val routes = controllers.map(_.endpoints).reduce(_ ~ _)
+
+
+
+  Http().bindAndHandle(handler = routes, interface = Settings.host, port = Settings.port, connectionContext = https)
     .onComplete {
       case Success(b) =>
         logger.info("Successfully bound to {}", b.localAddress)
