@@ -1,5 +1,4 @@
-package skierApp.statistics.Parameters
-
+package skierApp.statistics.utils
 
 case class SpeedParameters(maxSpeed: Double, avgSpeed: Double, minSpeed: Double)
 

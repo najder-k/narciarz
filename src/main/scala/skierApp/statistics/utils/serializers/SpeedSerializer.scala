@@ -1,8 +1,8 @@
-package skierApp.serializers
+package skierApp.statistics.utils.serializers
 
 import org.json4s.CustomSerializer
 import org.json4s.JsonAST.{JDouble, JObject, JValue}
-import skierApp.statistics.Parameters.SpeedParameters
+import skierApp.statistics.utils.SpeedParameters
 
 object SpeedSerializer extends CustomSerializer[SpeedParameters](implicit format => ( {
   case m: JValue =>

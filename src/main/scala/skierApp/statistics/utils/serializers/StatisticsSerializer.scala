@@ -1,9 +1,9 @@
-package skierApp.serializers
+package skierApp.statistics.utils.serializers
 
 import org.json4s.JsonAST.{JInt, JObject, JString, JValue}
 import org.json4s.{CustomSerializer, Extraction}
-import skierApp.statistics.Parameters.{AltitudeParameters, NarciarzData, SlopeParameters, SpeedParameters}
 import skierApp.statistics._
+import skierApp.statistics.utils.{AltitudeParameters, NarciarzData, SlopeParameters, SpeedParameters}
 
 object StatisticsSerializer extends CustomSerializer[NarciarzStatistics](implicit format => ( {
   case m: JValue =>

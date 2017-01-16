@@ -1,8 +1,8 @@
-package skierApp.serializers
+package skierApp.statistics.utils.serializers
 
 import org.json4s.CustomSerializer
 import org.json4s.JsonAST.{JInt, JObject, JValue}
-import skierApp.statistics.Parameters.AltitudeParameters
+import skierApp.statistics.utils.AltitudeParameters
 
 
 object AltitudeSerializer extends CustomSerializer[AltitudeParameters](implicit format => ( {

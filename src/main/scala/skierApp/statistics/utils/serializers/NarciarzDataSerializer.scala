@@ -1,8 +1,8 @@
-package skierApp.serializers
+package skierApp.statistics.utils.serializers
 
 import org.json4s.CustomSerializer
 import org.json4s.JsonAST._
-import skierApp.statistics.Parameters.NarciarzData
+import skierApp.statistics.utils.NarciarzData
 
 object NarciarzDataSerializer extends CustomSerializer[NarciarzData](implicit format => ( {
   case m: JValue =>

@@ -1,4 +1,4 @@
-package skierApp.rest
+package skierApp.api
 
 import akka.http.scaladsl.server.Route
 import akka.util.Timeout
