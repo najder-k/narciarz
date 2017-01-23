@@ -8,15 +8,17 @@ import skierApp.statistics.utils.{AltitudeParameters, NarciarzData, SlopeParamet
 object StatisticsSerializer extends CustomSerializer[NarciarzStatistics](implicit format => ( {
   case m: JValue =>
 
-    val timeStamp = (m \ "timeStamp").extract[String]
-    val skiingType = (m \ "skiingType").extract[String]
-    val speed = (m \ "speed").extract[SpeedParameters]
-    val altitude = (m \ "altitude").extract[AltitudeParameters]
-    val slope = (m \ "slope").extract[SlopeParameters]
-    val totalDistance = (m \ "totalDistance").extract[Int]
-    val caloriesRate = (m \ "caloriesRate").extract[Int]
-    val runsNumber = (m \ "runsNumber").extract[Int]
-    val data = (m \ "data").extract[List[NarciarzData]]
+    val pathPrefix = m \ "narciarzStatistics"
+
+    val timeStamp = (pathPrefix \ "timeStamp").extract[String]
+    val skiingType = (pathPrefix \ "skiingType").extract[String]
+    val speed = (pathPrefix \ "speed").extract[SpeedParameters]
+    val altitude = (pathPrefix \ "altitude").extract[AltitudeParameters]
+    val slope = (pathPrefix \ "slope").extract[SlopeParameters]
+    val totalDistance = (pathPrefix \ "totalDistance").extract[Int]
+    val caloriesRate = (pathPrefix \ "caloriesRate").extract[Int]
+    val runsNumber = (pathPrefix \ "runsNumber").extract[Int]
+    val data = (pathPrefix \ "data").extract[List[NarciarzData]]
     NarciarzStatistics(timeStamp, skiingType, speed, altitude, slope, totalDistance, caloriesRate, runsNumber, data)
 }, {
   case NarciarzStatistics(timeStamp, skiingType, speed, altitude, slope, totalDistance, caloriesRate, runsNumber, data) =>
